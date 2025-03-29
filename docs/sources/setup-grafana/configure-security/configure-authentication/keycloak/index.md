@@ -48,6 +48,7 @@ auth_url = https://<PROVIDER_DOMAIN>/realms/<REALM_NAME>/protocol/openid-connect
 token_url = https://<PROVIDER_DOMAIN>/realms/<REALM_NAME>/protocol/openid-connect/token
 api_url = https://<PROVIDER_DOMAIN>/realms/<REALM_NAME>/protocol/openid-connect/userinfo
 role_attribute_path = contains(roles[*], 'admin') && 'Admin' || contains(roles[*], 'editor') && 'Editor' || 'Viewer'
+use_pkce = true
 ```
 
 As an example, `<PROVIDER_DOMAIN>` can be `keycloak-demo.grafana.org`
@@ -84,7 +85,7 @@ It is useful as a fallback or if the user has more than 150 group memberships.
 As an example, `<grafana_root_url>` can be `https://play.grafana.org`.
 Non-listed configuration options can be left at their default values.
 
-2. In the client scopes configuration, _Assigned Default Client Scopes_ should match:
+3. In the client scopes configuration, _Assigned Default Client Scopes_ should match:
 
 ```
 email
@@ -97,7 +98,7 @@ roles
 These scopes do not add group claims to the `id_token`. Without group claims, teamsync will not work. Teamsync is covered further down in this document.
 {{% /admonition %}}
 
-3. For role mapping to work with the example configuration above,
+4. For role mapping to work with the example configuration above,
    you need to create the following roles and assign them to users:
 
 ```
